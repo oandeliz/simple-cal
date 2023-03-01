@@ -12,33 +12,39 @@ import { Flex, Spacer } from '@chakra-ui/react'
 import { Center, Square, Text, Box } from '@chakra-ui/react'
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
 import CenteredText from './components/CenteredText'
+import { useState } from 'react';
 
+const MIN = 0
+const MAX = 20
 
 function App() {
+  const [leftNumber, setLeftNumber]  = useState(1)
+  const [rightNumber, setRightNumber]  = useState(2)
   return (
-    <ChakraProvider>
-    <div>
+    <ChakraProvider><div>
     <Flex color='white'>
       <Center flex='1' bg='green.500'>
-      <NumberInput defaultValue={15} min={10} max={20}>
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
+        <NumberInput defaultValue={leftNumber} min={MIN} max={MAX}
+        onChange={(i)=> setLeftNumber(i)}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
       </Center>
       <Center flex='1' bg='green.500'>
         <AddIcon />
       </Center>
       <Center flex='1' bg='green.500'>
-      <NumberInput defaultValue={15} min={10} max={20}>
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
+        <NumberInput defaultValue={rightNumber} min={MIN} max={MAX}>
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
       </Center>
       <Center flex='1' bg='green.500'>
         <Text> = </Text>
@@ -49,7 +55,7 @@ function App() {
     </Flex>
 
     <Flex color='white'>
-      <CenteredText text="Box 1" />
+      <CenteredText text={leftNumber} />
       <CenteredText text="Box 1" />
       <CenteredText text="Box 1" />
       <CenteredText text="Box 1" />
